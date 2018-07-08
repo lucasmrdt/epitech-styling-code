@@ -2,12 +2,12 @@
     "name": "epitech-styling-code",
     "displayName": "epitech-styling-code",
     "description": "Check Epitech styling code.",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "publisher": "lucasmarandat",
     "icon": "images/icon.png",
     "repository": {
         "type": "git",
-		"url": "https://github.com/lucasmrdt/epitech-styling-code"
+        "url": "https://github.com/lucasmrdt/epitech-styling-code"
     },
     "engines": {
         "vscode": "^1.24.1"
