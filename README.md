@@ -1,6 +1,6 @@
 # epitech-styling-code
 
-![quickView](images/quickView.gif)
+![demo](https://github.com/lucasmrdt/epitech-styling-code/blob/master/images/quickView.gif)
 
 Code and check your Epitech styling code.
 
