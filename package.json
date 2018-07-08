@@ -3,15 +3,23 @@
     "displayName": "epitech-styling-code",
     "description": "Check Epitech styling code.",
     "version": "0.0.1",
-    "publisher": "lucasmrdt",
+    "publisher": "lucasmarandat",
+    "repository": {
+        "type": "git",
+		"url": "https://github.com/lucasmrdt/epitech-styling-code"
+    },
     "engines": {
         "vscode": "^1.24.1"
     },
     "categories": [
-        "Other"
+        "Other",
+        "Extension Packs",
+        "Formatters",
+        "Programming Languages"
     ],
     "activationEvents": [
-        "*"
+        "onLanguage:c",
+        "onLanguage:cpp"
     ],
     "main": "./dist/extension.bundle.js",
     "scripts": {

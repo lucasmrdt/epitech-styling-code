@@ -1,6 +1,6 @@
 # epitech-styling-code
 
-![quickView](images/quickView.gif)
+\!\[quickView\]\(images/quickView.gif\)
 
 Code and check your Epitech styling code.
 

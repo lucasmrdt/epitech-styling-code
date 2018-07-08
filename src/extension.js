@@ -3,8 +3,11 @@ const {
     window,
     Position,
     Range,
+    textDocument
 } = require('vscode')
+const path = require('path')
 
+const VALID_LANGUAGES = ['c', 'cpp']
 const TAB_SIZE = 8
 const INVISIBLE_CHAR = '\x01'
 const HEADER_REGEX = /\/\*\n\*\* EPITECH PROJECT, [0-9]{4}\n\*\* .*\n\*\* File description:\n(\*\* .*\n)+\*\/\n.*/
@@ -51,6 +54,10 @@ exports.activate = (context) => {
 }
 
 function checkStylingCode() {
+    if (!isValidLanguage()) {
+        return
+    }
+
     const textContent = getTextContent()
     if (!textContent) {
         return
@@ -175,6 +182,19 @@ const getTextContent = () => {
         return null
     }
     return textContent
+}
+
+const isValidLanguage = () => {
+    const editor = window.activeTextEditor
+    if (!editor) {
+        return false
+    }
+    const doc = editor.document
+    if (!doc) {
+        return false
+    }
+    const ext = doc.fileName.split('.').reverse()[0]
+    return VALID_LANGUAGES.includes(ext)
 }
 
 /*
