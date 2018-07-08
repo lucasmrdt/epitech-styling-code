@@ -2,8 +2,9 @@
     "name": "epitech-styling-code",
     "displayName": "epitech-styling-code",
     "description": "Check Epitech styling code.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "lucasmarandat",
+    "icon": "images/icon.png",
     "repository": {
         "type": "git",
 		"url": "https://github.com/lucasmrdt/epitech-styling-code"
