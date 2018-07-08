@@ -1,0 +1,32 @@
+{
+    "name": "epitech-styling-code",
+    "displayName": "epitech-styling-code",
+    "description": "Check Epitech styling code.",
+    "version": "0.0.1",
+    "publisher": "lucasmrdt",
+    "engines": {
+        "vscode": "^1.24.1"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./dist/extension.bundle.js",
+    "scripts": {
+        "build": "babel --preset es2015 src/extension.js -o dist/extension.bundle.js",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "babel-cli": "^6.26.0",
+        "babel-plugin-transform-object-rest-spread": "^6.26.0",
+        "eslint": "^4.11.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "--baseContentUrl": "images"
+}
