@@ -3,7 +3,7 @@
 
   
 
-![demo](https://github.com/lucasmrdt/epitech-styling-code/blob/master/images/quickView.gif)
+![demo](images/quickView.gif)
 
   
 
