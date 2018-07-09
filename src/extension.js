@@ -1,13 +1,22 @@
+/*
+** Interfaces :
+** <position> = {
+**      sx: (int) start column,
+**      ex: (int) end column,
+**      sy: (int) start line,
+**      ey: (int) end line,
+** }
+*/
+
 const {
     workspace,
     window,
     Position,
-    Range,
-    textDocument
+    Range
 } = require('vscode')
 const path = require('path')
 
-const VALID_LANGUAGES = ['c', 'cpp']
+const VALID_LANGUAGES = ['c', 'cpp', 'h']
 const TAB_SIZE = 8
 const INVISIBLE_CHAR = '\x01'
 const HEADER_REGEX = /\/\*\n\*\* EPITECH PROJECT, [0-9]{4}\n\*\* .*\n\*\* File description:\n(\*\* .*\n)+\*\/\n.*/
@@ -53,6 +62,9 @@ exports.activate = (context) => {
     checkStylingCode()
 }
 
+/*
+** Main function to check coding style
+*/
 function checkStylingCode() {
     if (!isValidLanguage()) {
         return
@@ -72,7 +84,9 @@ function checkStylingCode() {
 
 /*
 ** Get all areas where epitech styling code is not respected.
-** @return  <list>  positionsToUnderline
+** (where regex isn't enough powerful to check coding style)
+** @textContent (string) Text content of active tab.
+** @return (array of <position>) positionsToUnderline
 */
 const getInvalidStylingCode = (textContent) => {
     const lines = textContent.split('\n')
@@ -85,6 +99,11 @@ const getInvalidStylingCode = (textContent) => {
     return positionsToUnderline
 }
 
+/*
+** Check column number of each line.
+** @lines (array of str)
+** @return (array of <position>) positionsToUnderline
+*/
 const checkNumberColumns = (lines) => {
     let positionsToUnderline = []
     lines.forEach((line, i) => {
@@ -98,6 +117,11 @@ const checkNumberColumns = (lines) => {
     return positionsToUnderline
 }
 
+/*
+** Check comment inside function. Remember it's forbidden at Epitech.
+** @lines (array of str)
+** @return (array of <position>) positionsToUnderline
+*/
 const checkCommentInsideFunction = (lines) => {
     let positionsToUnderline = []
     let isInFunction = false
@@ -117,6 +141,11 @@ const checkCommentInsideFunction = (lines) => {
     return positionsToUnderline
 }
 
+/*
+** Check Epitech file header pattern.
+** @textContent (string) Text content of active tab.
+** @return (array of <position>) positionsToUnderline
+*/
 const checkFileHeader = (textContent) => {
     let positionsToUnderline = []
     if (!textContent.match(HEADER_REGEX)) {
@@ -132,7 +161,8 @@ const checkFileHeader = (textContent) => {
 
 /*
 ** Get all areas where epitech styling code is not respected.
-** @return  <list>  positionsToUnderline
+** @initialTextContent (string) Text content of active tab.
+** @return (array of <position>) positionsToUnderline
 */
 const getInvalidStylingCodeRegex = (initialTextContent) =>{
     let positionsToUnderline = []
@@ -151,12 +181,11 @@ const getInvalidStylingCodeRegex = (initialTextContent) =>{
 
 /*
 ** replace characters in string with characters number limit.
-** @str         <str>       Initial string content.
-** @reg         <regExp>    Regex rule replacement.
-** @replaceChar <char>      Replacement character.
-** @nbCharMax   <int>       Limit area to be replaced.
-**
-** @return      <str>       Initial text with char replacements.
+** @str (str) Initial string content.
+** @reg (regExp) Regex rule replacement.
+** @replaceChar (char) Replacement character.
+** @nbCharMax (int) Limit area to be replaced.
+** @return (str) Initial text with char replacements.
 */
 const replace = (str, reg, replaceChar, nbCharMax) => {
     const pre = str.substr(0, nbCharMax)
@@ -165,8 +194,8 @@ const replace = (str, reg, replaceChar, nbCharMax) => {
 }
 
 /*
-** Get textContent of active window.
-** @return  <str>   textContent
+** Get textContent of active tab.
+** @return (str) textContent
 */
 const getTextContent = () => {
     const editor = window.activeTextEditor
@@ -184,6 +213,10 @@ const getTextContent = () => {
     return textContent
 }
 
+/*
+** Check if current opened file is in VALID_LANGUAGES array.
+** @return (bool) res
+*/
 const isValidLanguage = () => {
     const editor = window.activeTextEditor
     if (!editor) {
@@ -199,10 +232,9 @@ const isValidLanguage = () => {
 
 /*
 ** Get position of match.
-** @textContent <str>   Text content of active window.
-** @regMatch    <obj>   Return value of String.match().
-**
-** @return      <obj>   Position of match.
+** @textContent (str) Text content of active window.
+** @regMatch (obj) Returned value of String.match().
+** @return <position> Position of match.
 */
 const getPositionOfMatch = (textContent, regMatch) => {
     const matchEnd = regMatch.index + regMatch[0].length
@@ -226,6 +258,10 @@ const getPositionOfMatch = (textContent, regMatch) => {
     return { ...start, ...end }
 }
 
+/*
+** Get position of selected line.
+** @return <position> Position of match.
+*/
 const getPositionOfSelectedLine = (line, i) => ({
     sx: 0,
     sy: i,
@@ -239,7 +275,7 @@ const errorDecorator = window.createTextEditorDecorationType({
 
 /*
 ** Underline characters between start and end of position in positions.
-** @positions   <list>
+** @positions (array of <position>)
 */
 function underline(positions) {
     const editor = window.activeTextEditor

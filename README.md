@@ -1,15 +1,11 @@
 
 # epitech-styling-code
 
-  
 
 ![demo](images/quickView.gif)
 
-  
-
 Code and check your Epitech styling code.
 
-  
 
 ## Features Checked
 
@@ -27,14 +23,14 @@ Code and check your Epitech styling code.
 
 - [x] Bad header.
 
-  
-
 ## Installation
 
 - In vscode press **CTRL+P**.
 - Then Copy/Paste :
 `ext install lucasmarandat.epitech-styling-code`
 
-  
+## Want new feature ?
+
+Write an issue on [github repository](https://github.com/lucasmrdt/epitech-styling-code)
 
 **Enjoy!**
