@@ -1,4 +1,6 @@
 
+**:warning: This extension is now deprecated [use this one](https://github.com/lucasmrdt/epitech-coding-style-checker) !**
+
 # epitech-styling-code
 
 
